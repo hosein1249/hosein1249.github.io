@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About Me</title>
+  <link rel="stylesheet" href="about-style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+  <div class="content">
+    <div class="bio-box">
+        <p class="bio-text">
+            <strong>About Me</strong><br>
+            I love exploring the world of software development and bringing ideas to life through code.<br>
+            <span class="more-text hidden">
+              I'm experienced in Python, Java, C, C++,SQL ,HTML ,CSS ,JavaScript and TypeScript, and I actively work with frameworks and tools like Django, React, and Selenium.  
+              I also have a deep interest in image processing and modern web development practices.<br>
+              Whether it's building robust backends or designing responsive interfaces, I'm always excited to grow, build, and level up — in both code and gaming.
+            </span>
+          </p>
+          
+      <div class="divider-with-text">
+        <span id="moreBtn">More</span>
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="social-box">
+    <a href="mailto:hosein1249hh@gmail.com" target="_blank">
+        <i class="fas fa-envelope"></i>
+      </a>
+      
+      <a href="https://t.me/kingasfhg" target="_blank">
+        <i class="fab fa-telegram"></i>
+      </a>
+      
+      <a href="https://instagram.com/hossein.babaian" target="_blank">
+        <i class="fab fa-instagram"></i>
+      </a>
+      
+  </div>
+
+  <script>
+    const moreBtn = document.getElementById('moreBtn');
+    const moreText = document.querySelector('.more-text');
+
+    moreBtn.addEventListener('click', () => {
+      moreText.classList.toggle('hidden');
+      moreBtn.textContent = moreText.classList.contains('hidden') ? 'More' : 'Less';
+    });
+  </script>
+
+</body>
+</html>

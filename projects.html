@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Projects</title>
+  <link rel="stylesheet" href="projects-style.css">
+</head>
+<body>
+
+    <div class="projects-section">
+        <h2>Projects</h2>
+        <div id="projects-wrapper">
+          <!-- Rows will be added here -->
+        </div>
+      
+        <div class="view-more">
+          <button id="viewMoreBtn">View More</button>
+        </div>
+      </div>
+      
+<script>
+const projectsData = [
+  {
+    title: 'University Food Reservation System',
+    description: 'A system developed as a university project for students to reserve meals. Implemented using C.'
+  },
+  {
+    title: 'Mini Twitter Clone',
+    description: 'A simplified social platform simulating core Twitter features such as tweeting, following, and timelines. Built for a university AP course.'
+  },
+  {
+    title: 'V2Ray Config to Selenium Proxy Converter',
+    description: 'A utility that converts V2Ray configurations into usable proxies for Selenium-based browser automation.'
+  },
+  {
+    title: 'Divar Ad Scraper Bot',
+    description: 'A Selenium-powered automation bot for scraping and monitoring Divar ads based on specific keywords. Useful for tracking categorized listings efficiently.'
+  },
+  {
+    title: 'Tkinter UI Generator',
+    description: 'A desktop tool that lets developers visually design and export Python Tkinter GUI layouts with ease and flexibility.'
+  }
+];
+
+
+  let visibleCount = 3;
+  const step = 3;
+  const defaultVisible = 3;
+
+  function renderProjects() {
+    const wrapper = document.getElementById('projects-wrapper');
+    wrapper.innerHTML = '';
+    const current = projectsData.slice(0, visibleCount);
+
+    for (let i = 0; i < current.length; i += 3) {
+      const row = document.createElement('div');
+      row.className = 'row-container';
+
+      current.slice(i, i + 3).forEach(project => {
+        const div = document.createElement('div');
+        div.className = 'project-card';
+        div.innerHTML = `
+          <h3>${project.title}</h3>
+          <p>${project.description}</p>
+          <button>More</button>
+        `;
+        row.appendChild(div);
+      });
+
+      wrapper.appendChild(row);
+    }
+
+    const btn = document.getElementById('viewMoreBtn');
+    if (visibleCount >= projectsData.length) {
+      btn.textContent = 'View Less';
+    } else {
+      btn.textContent = 'View More';
+    }
+  }
+
+  document.getElementById('viewMoreBtn').addEventListener('click', () => {
+    if (visibleCount >= projectsData.length) {
+      visibleCount = defaultVisible;
+    } else {
+      visibleCount += step;
+    }
+    renderProjects();
+  });
+
+  renderProjects();
+</script>
+
+
+</body>
+</html>
