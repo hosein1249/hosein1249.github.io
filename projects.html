@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Projects</title>
-  <link rel="stylesheet" href="projects-style.css">
+  <link rel="stylesheet" href="projects-style.css" />
 </head>
 <body>
 
-    <div class="projects-section">
-        <h2>Projects</h2>
-        <div id="projects-wrapper">
-          <!-- Rows will be added here -->
-        </div>
+  <main class="projects-section" role="main">
+    <h1>My Projects</h1>  
+    <div id="projects-wrapper">
       
-        <div class="view-more">
-          <button id="viewMoreBtn">View More</button>
-        </div>
-      </div>
-      
+    </div>
+
+    <div class="view-more">
+      <button id="viewMoreBtn">View More</button>
+    </div>
+  </main>
+
 <script>
 const projectsData = [
   {
@@ -42,54 +42,52 @@ const projectsData = [
   }
 ];
 
+let visibleCount = 3;
+const step = 3;
+const defaultVisible = 3;
 
-  let visibleCount = 3;
-  const step = 3;
-  const defaultVisible = 3;
+function renderProjects() {
+  const wrapper = document.getElementById('projects-wrapper');
+  wrapper.innerHTML = '';
+  const current = projectsData.slice(0, visibleCount);
 
-  function renderProjects() {
-    const wrapper = document.getElementById('projects-wrapper');
-    wrapper.innerHTML = '';
-    const current = projectsData.slice(0, visibleCount);
+  for (let i = 0; i < current.length; i += 3) {
+    const row = document.createElement('div');
+    row.className = 'row-container';
 
-    for (let i = 0; i < current.length; i += 3) {
-      const row = document.createElement('div');
-      row.className = 'row-container';
+    current.slice(i, i + 3).forEach(project => {
+      const div = document.createElement('div');
+      div.className = 'project-card';
+      div.innerHTML = `
+        <h3>${project.title}</h3>
+        <p>${project.description}</p>
+        <button>More</button>
+      `;
+      row.appendChild(div);
+    });
 
-      current.slice(i, i + 3).forEach(project => {
-        const div = document.createElement('div');
-        div.className = 'project-card';
-        div.innerHTML = `
-          <h3>${project.title}</h3>
-          <p>${project.description}</p>
-          <button>More</button>
-        `;
-        row.appendChild(div);
-      });
-
-      wrapper.appendChild(row);
-    }
-
-    const btn = document.getElementById('viewMoreBtn');
-    if (visibleCount >= projectsData.length) {
-      btn.textContent = 'View Less';
-    } else {
-      btn.textContent = 'View More';
-    }
+    wrapper.appendChild(row);
   }
 
-  document.getElementById('viewMoreBtn').addEventListener('click', () => {
-    if (visibleCount >= projectsData.length) {
-      visibleCount = defaultVisible;
-    } else {
-      visibleCount += step;
-    }
-    renderProjects();
-  });
+  const btn = document.getElementById('viewMoreBtn');
+  if (visibleCount >= projectsData.length) {
+    btn.textContent = 'View Less';
+  } else {
+    btn.textContent = 'View More';
+  }
+}
 
+document.getElementById('viewMoreBtn').addEventListener('click', () => {
+  if (visibleCount >= projectsData.length) {
+    visibleCount = defaultVisible;
+  } else {
+    visibleCount += step;
+  }
   renderProjects();
-</script>
+});
 
+renderProjects();
+</script>
 
 </body>
 </html>
